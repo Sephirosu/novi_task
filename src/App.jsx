@@ -10,20 +10,18 @@ function App() {
     };
 
     setCircles((prevCircle) => [...prevCircle, newCircle]);
+    console.log(circles);
   };
 
   const undoCircles = () => {
-    setCircles(circles.splice(1));
+    setCircles(circles.slice(1));
   };
 
   //Upitnik :)
   const redoCircle = () => {};
 
   return (
-    <div
-      className="relative w-screen h-screen cursor-wait"
-      onClick={addCircleHandler}
-    >
+    <div className="relative w-screen h-screen" onClick={addCircleHandler}>
       {circles.map((circle, index) => (
         <div
           className="absolute w-12 h-12 bg-blue-500 rounded-full"
