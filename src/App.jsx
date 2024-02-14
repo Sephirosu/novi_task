@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Circle from "./Circle";
 
 function App() {
   const [circles, setCircles] = useState([]);
@@ -10,10 +11,11 @@ function App() {
     };
 
     setCircles((prevCircle) => [...prevCircle, newCircle]);
+    console.log(circles);
   };
 
   const undoCircles = () => {
-    setCircles(circles.splice(1));
+    setCircles(circles.slice(1));
   };
 
   //Upitnik :)
@@ -25,14 +27,7 @@ function App() {
       onClick={addCircleHandler}
     >
       {circles.map((circle, index) => (
-        <div
-          className="absolute w-12 h-12 bg-blue-500 rounded-full"
-          style={{
-            left: `${circle.x - 25}px`,
-            top: `${circle.y - 25}px`,
-          }}
-          key={index}
-        ></div>
+        <Circle key={index} {...circle} />
       ))}
       <div className="fixed">
         <button
