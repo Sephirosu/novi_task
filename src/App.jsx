@@ -12,10 +12,13 @@ function App() {
     setCircles((prevCircle) => [...prevCircle, newCircle]);
   };
 
-  const undoCircles = () => {
-    setCircles(circles.splice(1));
+  undoCircles = (e) => {
+    if (circles.length > 0) {
+      const removedLast = circles.pop();
+      e.stopPropagation(setUndo([...circles, removedLast]));
+      console.log(circles);
+    }
   };
-
   //Upitnik :)
   const redoCircle = () => {};
 
