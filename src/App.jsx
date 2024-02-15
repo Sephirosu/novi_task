@@ -2,6 +2,7 @@ import { useState } from "react";
 
 function App() {
   const [circles, setCircles] = useState([]);
+  const [undo, setUndo] = useState([]);
 
   const addCircleHandler = (e) => {
     const newCircle = {
@@ -12,18 +13,18 @@ function App() {
     setCircles((prevCircle) => [...prevCircle, newCircle]);
   };
 
-  const undoCircles = () => {
-    setCircles(circles.splice(1));
+  const undoCircles = (e) => {
+    e.stopPropagation();
+    setCircles(circles.slice(1));
   };
 
   //Upitnik :)
-  const redoCircle = () => {};
+  const redoCircle = () => {
+    e.stopPropagation();
+  };
 
   return (
-    <div
-      className="relative w-screen h-screen cursor-wait"
-      onClick={addCircleHandler}
-    >
+    <div className="relative w-screen h-screen" onClick={addCircleHandler}>
       {circles.map((circle, index) => (
         <div
           className="absolute w-12 h-12 bg-blue-500 rounded-full"
